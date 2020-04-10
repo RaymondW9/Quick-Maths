@@ -4,6 +4,11 @@
     <title>Mental Math Challenge</title>
 </head>
 <body>
+    <form method="POST">
+        <input name="time" autocomplete="off">
+        <input type="submit">
+    </form>
+    <p>Ready to go? You'll have [{{ time }}] seconds to solve as many problems as you can.</p>
     <a href='{{ url }}'>Start</a>
 </body>
 </html>
