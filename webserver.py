@@ -69,6 +69,11 @@ def quiz():
             pass
     session['num1'] = randint(0, 100)
     session['num2'] = randint(0, 100)
+    if session['mode'] == '/':
+        #avoid dividing by 0
+        session['num2'] = session['num2'] + 1
+        #avoid decimal answers
+        session['num1'] = randint(0, 100) * session['num2']
     return render_template('quiz.html', num1=session['num1'], num2=session['num2'], points=session['points'], mode=session['mode'])
 
 app.run(host='0.0.0.0', port=5000, debug=True)
