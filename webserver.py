@@ -8,11 +8,11 @@ app.secret_key = "a, b, c where a^n + b^n = c^n for n > 2"
 @app.route('/', methods=['GET', 'POST'])
 def start():
     session['points'] = 0
-    session['num1'] = randint(0, 100)
-    session['num2'] = randint(0, 100)
     session['started'] = 0
     session['time'] = 60
     session['mode'] = '+'
+    session['min'] = 0
+    session['max'] = 100
     if request.method == 'POST':
         #get the user-inputted duration
         try:
@@ -26,6 +26,15 @@ def start():
             session['mode'] = request.form['mode']
         except:
             pass
+        #get the user-inputted range
+        try:
+            session['min'] = int(request.form['min'])
+            session['max'] = int(request.form['max'])
+            if session['min'] < -100000 or session['max'] > 100000 or session['min'] > session['max']:
+                session['min'] = 0
+                session['max'] = 100
+        except:
+            pass
     if session['mode'] == '+':
         mode = 'addition'
     if session['mode'] == '-':
@@ -34,7 +43,9 @@ def start():
         mode = 'multiplication'
     if session['mode'] == '/':
         mode = 'division'
-    return render_template('start.html', url=url_for('quiz'), time=session['time'], mode=mode)
+    session['num1'] = randint(session['min'], session['max'])
+    session['num2'] = randint(session['min'], session['max'])
+    return render_template('start.html', url=url_for('quiz'), time=session['time'], mode=mode, minimum=session['min'], maximum=session['max'])
 
 @app.route('/quiz', methods=['GET', 'POST'])
 def quiz():
@@ -67,13 +78,14 @@ def quiz():
                 session['points'] = session['points'] + 1
         except:
             pass
-    session['num1'] = randint(0, 100)
-    session['num2'] = randint(0, 100)
+    session['num1'] = randint(session['min'], session['max'])
+    session['num2'] = randint(session['min'], session['max'])
     if session['mode'] == '/':
         #avoid dividing by 0
-        session['num2'] = session['num2'] + 1
+        if session['num2'] == 0:
+            session['num2'] = 1
         #avoid decimal answers
-        session['num1'] = randint(0, 100) * session['num2']
+        session['num1'] = randint(session['min'], session['max']) * session['num2']
     return render_template('quiz.html', num1=session['num1'], num2=session['num2'], points=session['points'], mode=session['mode'])
 
 app.run(host='0.0.0.0', port=5000, debug=True)

@@ -17,11 +17,16 @@
             <option value="*">Multiplication</option>
             <option value="/">Division</option>
         </select>
+        <p>Enter a minimum and maximum value (values must be between -100000 and 100000, and the minimum must be less than the maximum). The defaults are 0 and 100.</p>
+        <label style="font-weight:bold">Min Value:</label>
+        <input name="min" autocomplete="off">
+        <label style="font-weight:bold">Max Value:</label>
+        <input name="max" autocomplete="off">
         <p>Hit enter or click submit to confirm your settings</p>
         <input type="submit">
     </form>
     <div>
-        <p>Ready to go? You'll have [<nobr style="font-weight:bold">{{ time }}</nobr>] seconds to solve as many [<nobr style="font-weight:bold">{{ mode }}</nobr>] problems as you can.</p>
+        <p>Ready to go? You'll have [<nobr style="font-weight:bold">{{ time }}</nobr>] seconds to solve as many [<nobr style="font-weight:bold">{{ mode }}</nobr>] problems as you can. Values will be between [<nobr style="font-weight:bold">{{ minimum }}</nobr>] and [<nobr style="font-weight:bold">{{ maximum }}</nobr>].</p>
     </div>
     <a href='{{ url }}'>Start</a>
 </body>
