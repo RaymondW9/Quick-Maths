@@ -86,6 +86,6 @@ def quiz():
             session['num2'] = 1
         #avoid decimal answers
         session['num1'] = randint(session['min'], session['max']) * session['num2']
-    return render_template('quiz.html', num1=session['num1'], num2=session['num2'], points=session['points'], mode=session['mode'])
+    return render_template('quiz.html', num1=session['num1'], num2=session['num2'], points=session['points'], mode=session['mode'], url=url_for('start'))
 
 app.run(host='0.0.0.0', port=5000, debug=True)

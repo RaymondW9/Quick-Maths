@@ -1,0 +1,51 @@
+.center {
+    position: relative;
+    top: 50px;
+    padding: 15px;
+    margin: auto;
+    width: 500px;
+    box-shadow: 0px 0px 8px 2px black;
+    background-color: rgba(255, 255, 255);
+}
+
+h2 {
+    text-align: center;
+}
+
+h3 {
+    text-decoration: underline;
+}
+
+nobr {
+    font-weight: bold;
+    color: #d61c1c;
+}
+
+a {
+    font-weight: bold;
+    color: #0065ad;
+    font-size: 20px;
+    text-decoration: none;
+    float: right;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #0065ad;
+}
+
+a:hover {
+   color: #388dc9;
+}
+
+.background1 {
+    background: url("geometric.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: bottom;
+    background-size: cover;
+}
+
+.question {
+    font-size: 25px;
+}

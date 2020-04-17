@@ -2,13 +2,18 @@
 <html>
 <head>
     <title>Mental Math Challenge</title>
+    <link href="static/style.css" rel="stylesheet">
 </head>
-<body>
-    <p>{{ num1 }} {{ mode }} {{ num2 }}</p>
-    <form method="POST">
-        <input name="userAns" autocomplete="off" autofocus>
-        <input type="submit">
-    </form>
-    <p>Score: {{ points }}</p>
+<body class="background1">
+    <div class="center">
+        <p class="question">{{ num1 }} {{ mode }} {{ num2 }}</p>
+        <form method="POST">
+            <input name="userAns" autocomplete="off" autofocus>
+            <input type="submit">
+        </form>
+        <p>Score: {{ points }}</p>
+        <a href='{{ url }}'>Return to Start</a>
+        <br><br>
+    </div>
 </body>
 </html>
