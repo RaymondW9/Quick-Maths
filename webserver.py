@@ -13,6 +13,8 @@ def start():
     session['mode'] = '+'
     session['min'] = 0
     session['max'] = 100
+    session['incorrect'] = 0
+    session['skipped'] = 0
     if request.method == 'POST':
         #get the user-inputted duration
         try:
@@ -34,6 +36,8 @@ def start():
                 session['min'] = 0
                 session['max'] = 100
         except:
+            session['min'] = 0
+            session['max'] = 100
             pass
     if session['mode'] == '+':
         mode = 'addition'
@@ -60,7 +64,9 @@ def quiz():
     
     #after time's up, return the user's score
     if datetime.datetime.now() > session['endtime']:
-        return render_template('results.html', url=url_for('start'), score=session['points'])
+        minutes = int(session['time'] / 60)
+        seconds = session['time'] % 60
+        return render_template('results.html', url=url_for('start'), score=session['points'], incorrect=session['incorrect'], skipped=session['skipped'], minutes=minutes, seconds=seconds)
     
     #Check the user's answer
     if request.method == 'POST':
@@ -76,7 +82,10 @@ def quiz():
                 correctAns = session['num1'] / session['num2']
             if ans == correctAns:
                 session['points'] = session['points'] + 1
+            else:
+                session['incorrect'] = session['incorrect'] + 1
         except:
+            session['skipped'] = session['skipped'] + 1
             pass
     session['num1'] = randint(session['min'], session['max'])
     session['num2'] = randint(session['min'], session['max'])

@@ -9,7 +9,10 @@
         {% if score == -1 %}
             <p class="question">To start the challenge, return to the home page:</p>
         {% else %}
-            <p class="question">Final Score: {{ score }}</p>
+            <p class="question" style="font-weight:bold">Final Score: {{ score }}</p>
+            <p class="question">Incorrect Answers: {{ incorrect }}</p>
+            <p class="question">Skipped Questions: {{ skipped }}</p>
+            <p class="question">Quiz length: {{ minutes }}m {{ seconds }}s</p>
         {% endif %}
         <a href='{{ url }}'>Return to Start</a>
         <br><br>

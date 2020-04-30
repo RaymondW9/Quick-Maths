@@ -14,13 +14,15 @@
             <input name="time" autocomplete="off">
             <p>Choose a mode. The default is addition.</p>
             <label style="font-weight:bold">Mode:</label>
-            <br>
-            <select name="mode" size="4">
-                <option value="+">Addition</option>
-                <option value="-">Subtraction</option>
-                <option value="*">Multiplication</option>
-                <option value="/">Division</option>
-            </select>
+            <br><br>
+            <input type="radio" name="mode" value="+">
+            <label>Addition</label><br>
+            <input type="radio" name="mode" value="-">
+            <label>Subtraction</label><br>
+            <input type="radio" name="mode" value="*">
+            <label>Multiplication</label><br>
+            <input type="radio" name="mode" value="/">
+            <label>Division</label><br>
             <p>Enter a minimum and maximum value (values must be between -100000 and 100000, and the minimum must be less than the maximum). The defaults are 0 and 100.</p>
             <label style="font-weight:bold">Min Value:</label>
             <input name="min" autocomplete="off">
